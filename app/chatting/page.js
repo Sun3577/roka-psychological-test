@@ -30,6 +30,9 @@ export default function ChatPage() {
       timestamp: new Date(),
     },
   ])
+  
+  const [chatStartTime, setChatStartTime] = useState(new Date())
+  const [showEndButton, setShowEndButton] = useState(false)
 
   const [inputValue, setInputValue] = useState("")
   const [inputHeight, setInputHeight] = useState(80)
@@ -65,6 +68,25 @@ export default function ChatPage() {
       chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight
     }
   }, [messages])
+  
+  
+  // Show end button after 5 minutes
+  useEffect(() => {
+    const timer = setTimeout(
+      () => {
+        setShowEndButton(true)
+      },
+      5 * 60 * 1000,
+    ) // 5 minutes in milliseconds
+
+    return () => clearTimeout(timer)
+  }, [])
+
+  const handleEndInspection = () => {
+    // Handle ending the inspection
+    alert("검사를 종료합니다.")
+    // You can add navigation logic here
+  }
 
   const handleSendMessage = () => {
     if (inputValue.trim()) {
@@ -111,6 +133,18 @@ export default function ChatPage() {
 
   return (
     <div className="h-screen flex flex-col bg-gray-50">
+      {/* End Inspection Button - appears after 5 minutes */}
+      {showEndButton && (
+        <button
+          onClick={handleEndInspection}
+          className="fixed top-6 right-6 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full flex items-center space-x-2 shadow-lg z-10 transition-colors"
+        >
+          <span className="text-sm font-medium">검사 종료하기</span>
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      )}
       {/* Chat Messages Section */}
       <div
         ref={chatContainerRef}
@@ -134,7 +168,7 @@ export default function ChatPage() {
               return (
                 <div key={message.id} className="flex justify-end">
                   <div
-                    className="bg-green-400 text-white max-w-md"
+                    className="bg-[#a0c878] text-white max-w-md"
                     style={{
                       borderRadius: "35px 35px 35px 35px",
                       borderTopRightRadius: "8px",
@@ -183,7 +217,7 @@ export default function ChatPage() {
             onChange={(e) => setInputValue(e.target.value)}
             onKeyPress={handleKeyPress}
             placeholder="또상이에게 하고 싶은 말을 입력하세요."
-            className="w-full resize-none border border-gray-300 rounded-full px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="w-full resize-none border border-gray-300 rounded-full px-4 py-4 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             style={{
               minHeight: "48px",
               maxHeight: "120px",
