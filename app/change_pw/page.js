@@ -4,7 +4,7 @@ import { Label } from "@/components/ui/label"
 
 export default function PasswordChange() {
   return (
-    <div className="min-h-screen relative flex items-center justify-center px-4">
+    <div className="min-h-screen relative flex items-center justify-center px-3">
       {/* Background Image with Opacity */}
     <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-10"
@@ -14,16 +14,15 @@ export default function PasswordChange() {
       {/* Content */}
       <div className="relative z-10 w-full max-w-md space-y-8">
         {/* Header */}
-        <div className="text-center space-y-4">
+        <div className="space-y-4">
           <h1 className="text-2xl font-bold text-gray-900">비밀번호 변경</h1>
           <div className="text-sm text-gray-600 space-y-1">
-            <p>최초 비밀번호가 군번으로 되어 있기 때문에 비밀번호를 변경해야 합니다.</p>
-            <p>본인이 기억할 수 있는 비밀번호로 설정해주시기 바랍니다.</p>
+            <p>최초 비밀번호가 군번으로 설정되어 있기 때문에 본인이 기억할 수 있는 비밀번호로 설정해주시기 바랍니다.</p>
           </div>
         </div>
 
         {/* Password Change Form */}
-        <div className="space-y-6">
+        <div className="space-y-4">
           <div className="space-y-2">
             <Label htmlFor="current-password" className="text-sm font-medium text-gray-700">
               현재 비밀번호
