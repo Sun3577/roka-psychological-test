@@ -7,7 +7,6 @@ import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 
-
 export default function Dashboard() {
   const [currentView, setCurrentView] = useState("home")
   const [selectedSoldier, setSelectedSoldier] = useState(null)
@@ -178,7 +177,7 @@ export default function Dashboard() {
           <CardContent className="space-y-6">
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="text-sm font-medium text-gray-600">검사 날짜</label>
+                <label className="text-sm font-medium text-red-600">검사 날짜</label>
                 <p className="text-lg">{selectedTest.date}</p>
               </div>
               <div>
